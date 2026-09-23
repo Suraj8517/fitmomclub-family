@@ -1,15 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import img from "../assets/home/img1.webp"
-/**
- * "Wij maken content die opvalt" intro section.
- *
- * Uses the same design tokens as HeroSection.jsx (bg-bg, primary-blue,
- * text-text, font-inter — see that file's header comment for the
- * @theme block this relies on).
- *
- * Swap PORTRAIT_SRC for the real photo. Requires gsap: `npm install gsap`
- */
+
 
 const PORTRAIT_SRC =img;
 
@@ -89,7 +81,7 @@ export default function IntroSection() {
               type="button"
               className="mx-auto mt-8 inline-flex items-center gap-4 rounded-full bg-white py-2 pl-6 pr-2 text-base font-semibold shadow-sm transition-transform hover:scale-[1.02]"
             >
-              Leer ons kennen
+              Start Your Free Trial
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-text">
                 <svg
                   width="16"
@@ -108,6 +100,7 @@ export default function IntroSection() {
                 </svg>
               </span>
             </button>
+            
           </div>
         </div>
       </div>

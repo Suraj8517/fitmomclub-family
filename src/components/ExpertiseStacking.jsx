@@ -2,15 +2,15 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
+import community from "../assets/home/expertise/community.webp"
+import plan from "../assets/home/expertise/plan.webp"
+import quiz from "../assets/home/expertise/quiz.webp"
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Each card = one "expertise". Add/remove entries here and the stack updates automatically.
-// NOTE: bg-primary-pink is assumed to exist alongside your existing bg-primary-blue /
-// bg-primary-green tokens. If it isn't defined yet, either add it to your Tailwind theme
-// or swap the className below for an arbitrary value, e.g. bg-[#F6A6EF].
+
 const expertises = [
   {
     number: "01",
@@ -21,7 +21,7 @@ const expertises = [
     ctaLabel: "Take the Quiz",
     ctaHref: "#",
     image:
-      "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
+      quiz,
     imageRotate: 4,
     cardBg: "bg-white",
     textColor: "text-text",
@@ -33,6 +33,7 @@ const expertises = [
     ctaText: "text-white",
     circleBg: "bg-white",
     circleIcon: "text-primary-orange",
+    subhead:"Take Quiz"
   },
   {
     number: "02",
@@ -43,7 +44,7 @@ const expertises = [
     ctaLabel: "Get Your Plan",
     ctaHref: "#",
     image:
-      "https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=800&q=80",
+      plan,
     imageRotate: -4,
     cardBg: "bg-primary-pink",
     textColor: "text-text",
@@ -55,6 +56,7 @@ const expertises = [
     ctaText: "text-text",
     circleBg: "bg-text",
     circleIcon: "text-white",
+    subhead:"Select Plan"
   },
   {
     number: "03",
@@ -65,7 +67,7 @@ const expertises = [
     ctaLabel: "Join the Community",
     ctaHref: "#",
     image:
-      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80",
+      community,
     imageRotate: -3,
     cardBg: "bg-primary-green",
     textColor: "text-text",
@@ -77,6 +79,7 @@ const expertises = [
     ctaText: "text-text",
     circleBg: "bg-text",
     circleIcon: "text-white",
+    subhead:"Join Community"
   },
 ];
 
@@ -125,7 +128,10 @@ export default function ExpertiseStack() {
   }, []);
 
   return (
-    <section className="bg-bg font-inter">
+    <section className="bg-bg font-inter pt-20">
+        <div className="text-center ">
+            <h2 className="text-5xl font-inter font-bold">How It Works </h2>
+        </div>
       <div className="px-3 pb-24 pt-10 sm:px-5 lg:px-8">
         {expertises.map((c, i) => (
           <div
@@ -151,7 +157,7 @@ export default function ExpertiseStack() {
                   <span
                     className={`inline-block rounded-full px-4 py-1.5 text-sm font-semibold ${c.badgeBg} ${c.badgeText}`}
                   >
-                    Expertise
+                    {c.subhead}
                   </span>
                   <h2 className="mt-6 text-5xl font-black leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
                     {c.title}
