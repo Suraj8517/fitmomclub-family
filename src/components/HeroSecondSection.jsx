@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import img from "../assets/home/img1.webp"
+import img from "../assets/home/img1.webp";
 
-
-const PORTRAIT_SRC =img;
+const PORTRAIT_SRC = img;
 
 export default function IntroSection() {
   const sectionRef = useRef(null);
@@ -41,48 +40,51 @@ export default function IntroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-bg font-inter text-text pb-16"
+      className="relative bg-bg font-inter text-text pb-24 overflow-hidden sm:pb-16"
     >
-      <div className="mx-auto max-w-6xl px-6 py-6 sm:px-8 sm:py-20 lg:px-12 lg:pt-4">
+      <div className="mx-auto max-w-6xl px-4 py-6 sm:px-8 sm:py-20 lg:px-12 lg:pt-4">
         {/* Headline */}
         <h2
           ref={headlineRef}
-          className="font-inter max-w-4xl text-[9vw] font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-[4.5rem]"
+          className="font-inter max-w-4xl text-[8vw] font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-[4.5rem]"
         >
           Fast, effective workouts for busy families. Train at home, stay consistent, and get stronger together with real coaching.
-
-
         </h2>
-
       </div>
 
       {/* Portrait + copy row — full-bleed so the portrait can sit flush
           against the actual screen edge, independent of this section's
           max-width container */}
-      <div className="relative left-1/2 mt-16 w-screen -translate-x-1/2 sm:mt-24">
-        <div className="flex flex-col items-center gap-10 sm:grid sm:grid-cols-[auto_1fr] sm:items-center sm:gap-0">
+      <div className="relative left-1/2 mt-10 w-screen -translate-x-1/2 sm:mt-24">
+        <div className="pb-6 flex flex-col items-center gap-10 sm:grid sm:grid-cols-[auto_1fr] sm:items-center sm:gap-0">
+          {/* Phones: wide portrait, tilted a few degrees. sm+: original small portrait. */}
           <div
             ref={imageRef}
-            className="aspect-[4/5] w-full max-w-[220px] shrink-0 overflow-hidden rounded-2xl bg-primary-pink/40 sm:ml-25 sm:max-w-[260px]"
+            className="py-6aspect-[4/5] w-[78vw] shrink-0 rotate-2 overflow-hidden rounded-[20px] bg-primary-pink/40 sm:ml-25 sm:w-full sm:max-w-[260px] sm:rotate-0 sm:rounded-2xl"
           >
             <img
               src={PORTRAIT_SRC}
-              alt="Teamlid van het bureau"
-              className="h-full w-full object-cover"
+              alt="family"
+              className="h-full w-full object-cover "
             />
           </div>
 
-          <div ref={textRef} className="mx-54 max-w-md text-left">
-            <p className="text-lg font-semibold leading-snug sm:text-[24px]">
-              You don't need two hours and a babysitter to get strong. FitMom Club Family gives busy moms, dads, and kids fast, effective home workouts, real coaching, and a community that actually gets it because we're a family too. 
+          {/* Phones: full width, left aligned. sm+: original centered column. */}
+          <div
+            ref={textRef}
+            className="w-full max-w-md px-4 text-left sm:mx-54 sm:w-auto sm:px-0"
+          >
+            <p className="text-xl font-semibold leading-snug sm:text-[24px]">
+              You don't need two hours and a babysitter to get strong. FitMom Club Family gives busy moms, dads, and kids fast, effective home workouts, real coaching, and a community that actually gets it because we're a family too.
             </p>
 
+            {/* Phones: outlined pill. sm+: white pill with shadow. */}
             <button
               type="button"
-              className="mx-auto mt-8 inline-flex items-center gap-4 rounded-full bg-white py-2 pl-6 pr-2 text-base font-semibold shadow-sm transition-transform hover:scale-[1.02]"
+              className="mt-6 inline-flex items-center gap-3 rounded-full border border-text bg-transparent py-1 pl-4 pr-1 text-sm font-semibold transition-transform hover:scale-[1.02] sm:mt-8 sm:gap-4 sm:border-0 sm:bg-white sm:py-2 sm:pl-6 sm:pr-2 sm:text-base sm:shadow-sm"
             >
               Start Your Free Trial
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-text">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-text sm:h-9 sm:w-9">
                 <svg
                   width="16"
                   height="16"
@@ -100,7 +102,6 @@ export default function IntroSection() {
                 </svg>
               </span>
             </button>
-            
           </div>
         </div>
       </div>
