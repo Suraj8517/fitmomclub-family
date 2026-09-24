@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import about from "../../assets/about/about.jpg";
+import JoinNowButton from "../utils/joinNowButton";
 export default function MissionSection() {
   return (
     <section className="bg-bg w-full px-6 sm:px-10 lg:px-16  ">
@@ -24,12 +25,7 @@ export default function MissionSection() {
            Our mission is simple: help busy families feel strong, energized, and connected through fitness that fits real life.
           </h2>
 
-          <button className="inline-flex items-center gap-4 bg-primary-white text-text font-inter font-medium text-base pl-6 pr-2 py-2 rounded-full hover:opacity-90 transition-opacity">
-            <span>Join Now</span>
-            <span className="flex items-center justify-center w-9 h-9 rounded-full bg-text text-primary-white">
-              <ArrowRight size={18} />
-            </span>
-          </button>
+          <JoinNowButton text="Join Now" bg="bg-text" color="text-primary-white" circleBg="bg-white" circleColor="text-text" />
         </div>
       </div>
     </section>

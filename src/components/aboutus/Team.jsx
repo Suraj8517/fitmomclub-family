@@ -1,7 +1,7 @@
-import ShapeCard from "../utils/ShapedBg";
 import vignesh from "../../assets/about/vignesh.png";
 import sarvesh from "../../assets/about/sarvesh.png";
 import pritika from "../../assets/about/pritika.png";
+import ShapeCardForTeams from "../utils/shapeBgForTeam";
 
 // offset: same top margin (mt-10) for every card on phones; the original staggered
 //         offsets apply from sm up.
@@ -60,7 +60,7 @@ function WorkCard({ item }) {
         className="h-[560px] w-full object-cover"
       />
       <div className="absolute inset-x-4 bottom-4">
-        <ShapeCard
+        <ShapeCardForTeams
           title={item.title}
           secondLine={item.secondLine}
           buttonText={item.buttonText}

@@ -4,6 +4,7 @@ import Header from '../components/utils/Header'
 import { Routes, Route } from "react-router-dom";
 import About from './About';
 import Services from './services';  
+import Contact from './contact';
 function LandingPage() {
   return (
     <div>
@@ -12,6 +13,7 @@ function LandingPage() {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/services' element={<Services />} />
+        <Route path='/contact-us' element={<Contact />} />
       </Routes>
     </div>
   )

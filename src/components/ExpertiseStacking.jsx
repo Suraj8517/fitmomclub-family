@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import community from "../assets/home/expertise/community.webp";
 import plan from "../assets/home/expertise/plan.webp";
 import quiz from "../assets/home/expertise/quiz.webp";
+import JoinNowButton from "./utils/joinNowButton";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -173,17 +174,15 @@ export default function ExpertiseStack() {
                   <p className="mt-2 text-[15px] leading-relaxed opacity-80 sm:mt-3 sm:text-lg sm:leading-normal">
                     {c.description}
                   </p>
-                  <a
-                    href={c.ctaHref}
-                    className={`mt-5 inline-flex items-center gap-3 rounded-full py-1.5 pl-5 pr-1.5 text-sm font-bold transition-transform hover:scale-[1.03] sm:mt-6 sm:pl-6 sm:text-base ${c.ctaBg} ${c.ctaText}`}
-                  >
-                    {c.ctaLabel}
-                    <span
-                      className={`flex h-9 w-9 flex-none items-center justify-center rounded-full sm:h-10 sm:w-10 ${c.circleBg}`}
-                    >
-                      <ArrowRight className={`h-4 w-4 ${c.circleIcon}`} />
-                    </span>
-                  </a>
+                  <div className="mt-6">
+
+<JoinNowButton
+  text={c.ctaLabel}
+  bg={c.ctaBg}
+  color={c.ctaText}
+  circleBg={c.circleBg}
+  circleColor={c.circleIcon}
+/>                 </div>
                 </div>
               </div>
 

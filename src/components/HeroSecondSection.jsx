@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import img from "../assets/home/img1.webp";
+import JoinNowButton from "./utils/joinNowButton";
 
 const PORTRAIT_SRC = img;
 
@@ -79,29 +80,10 @@ export default function IntroSection() {
             </p>
 
             {/* Phones: outlined pill. sm+: white pill with shadow. */}
-            <button
-              type="button"
-              className="mt-6 inline-flex items-center gap-3 rounded-full border border-text bg-transparent py-1 pl-4 pr-1 text-sm font-semibold transition-transform hover:scale-[1.02] sm:mt-8 sm:gap-4 sm:border-0 sm:bg-white sm:py-2 sm:pl-6 sm:pr-2 sm:text-base sm:shadow-sm"
-            >
-              Start Your Free Trial
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-text sm:h-9 sm:w-9">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M3 8H13M13 8L9 4M13 8L9 12"
-                    stroke="var(--color-bg)"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </button>
+            <div className="mt-6">
+           <JoinNowButton text="Start Your Free Trial" bg="bg-white" color="text-text" circleBg="bg-text" circleColor="text-white" />
+
+            </div>
           </div>
         </div>
       </div>

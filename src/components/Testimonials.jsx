@@ -9,7 +9,7 @@ const DEFAULT_ITEMS = [
     poster: "",
     tags: ["Family", "Fitness"],
     title:
-      "“Finally, a fitness program that works for our \nwhole family.”",
+      "“Finally, a fitness program that works for our whole family.”",
     brand: "Member Since 2025",
     href: "#",
   },
@@ -19,7 +19,7 @@ const DEFAULT_ITEMS = [
     poster: "",
     tags: ["Community", "Lifestyle"],
     title:
-      "“These workouts fit perfectly into my\n busy schedule.”",
+      "“These workouts fit perfectly into my busy schedule.”",
     brand: "Member Since 2026",
     href: "#",
   },

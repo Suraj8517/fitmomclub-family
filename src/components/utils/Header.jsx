@@ -8,7 +8,7 @@ const NAV_LINKS = [
   { label: "About", to: "/about" },
   { label: "Services", to: "/services" },
   { label: "Blogs", to: "/blogs" },
-  { label: "Contact", to: "/contact" },
+  { label: "Contact", to: "/contact-us" },
 ];
 
 function NavLink({ label, to }) {

@@ -1,4 +1,5 @@
 import React from "react";
+import { User } from "lucide-react";
 
 /**
  * ShapeCard — a clipped-corner promo card with a heading, CTA button,
@@ -8,7 +9,7 @@ import React from "react";
  * card scales correctly whether it's full-width or sitting in a narrow
  * grid column or sidebar.
  */
-const ShapeCard = ({
+const ShapeCardForTeams = ({
   title = "Zacht in smaak,",
   secondLine = "",
   buttonText = "Roasta",
@@ -121,12 +122,12 @@ const ShapeCard = ({
           </button>
 
           {/* =========================
-              ARROW BUTTON
+              PERSON BUTTON
           ========================== */}
           <button
             type="button"
             onClick={onArrowClick}
-            aria-label="Open card"
+            aria-label="View profile"
             className="
               absolute
               right-[6%]
@@ -159,19 +160,11 @@ const ShapeCard = ({
               motion-reduce:hover:scale-100
             "
           >
-            <svg
-              viewBox="0 0 24 24"
+            <User
+              strokeWidth={2.4}
               className="h-[45%] w-[45%]"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
               aria-hidden="true"
-            >
-              <path d="M6 18L18 6" />
-              <path d="M10 6H18V14" />
-            </svg>
+            />
           </button>
         </div>
       </div>
@@ -179,4 +172,4 @@ const ShapeCard = ({
   );
 };
 
-export default ShapeCard;
+export default ShapeCardForTeams;
