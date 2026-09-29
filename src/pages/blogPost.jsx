@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { PortableText } from "@portabletext/react";
-import { client, urlFor } from "../sanityClient";
+import { client, urlFor } from "../sanityclient";
 
 const formatDate = (dateString) =>
   new Date(dateString).toLocaleDateString("en-US", {
