@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import about from "../../assets/about/about.jpg";
-import JoinNowButton from "../utils/joinNowButton";
+import JoinNowButton from "../utils/joinnowbutton";
 export default function MissionSection() {
   return (
     <section className="bg-bg w-full px-6 sm:px-10 lg:px-16  ">
