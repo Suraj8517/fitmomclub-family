@@ -12,49 +12,39 @@ const NAV = [
 
 const SOCIALS = [
   {
-    label: "LinkedIn",
-    href: "#",
-    icon: (
-      <path
-        fill="currentColor"
-        d="M4.5 9h3v10.5h-3V9Zm1.5-4.8a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM10 9h2.9v1.5c.5-.9 1.6-1.7 3.2-1.7 3.1 0 3.9 2 3.9 4.7v6h-3v-5.3c0-1.4-.2-2.7-1.8-2.7s-2.1 1.1-2.1 2.7v5.3H10V9Z"
-      />
-    ),
-  },
-  {
-    label: "TikTok",
-    href: "#",
-    icon: (
-      <path
-        fill="currentColor"
-        d="M16.5 3h-3v11.8a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.2a5.6 5.6 0 1 0 4.8 5.6V8.9a6.5 6.5 0 0 0 3.8 1.2V7.1A3.8 3.8 0 0 1 16.5 3Z"
-      />
-    ),
-  },
-  {
     label: "Instagram",
     href: "#",
     icon: (
       <g fill="none" stroke="currentColor" strokeWidth="2">
         <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
         <circle cx="12" cy="12" r="4" />
-        <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+        <circle
+          cx="17.2"
+          cy="6.8"
+          r="1"
+          fill="currentColor"
+          stroke="none"
+        />
       </g>
     ),
   },
   {
-    label: "YouTube",
+    label: "Facebook",
     href: "#",
     icon: (
       <path
         fill="currentColor"
-        d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z"
+        d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.7-1.6h1.8V3.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V10H8v3h2.6v8h2.9Z"
       />
     ),
   },
 ];
 
 const FALLBACK_COLORS = ["#5FE0A0", "#4FA6F2", "#E39CEF", "#F1552B"];
+// Stable empty-array reference so the `logos` default doesn't create a new
+// array identity on every render (which would otherwise re-run the trail's
+// effect — and clear pending stamp-removal timeouts — on every spawn).
+const EMPTY_LOGOS = [];
 
 const STAMP_LIFE_MS = 1200;
 const SPAWN_DISTANCE = 220; // px the pointer must travel before the next stamp
@@ -246,9 +236,9 @@ function BrandLogo({ src, alt = "Logo", to, href = "#" }) {
 export default function FooterWithCta({
   heading = "Start Your Family Fitness Journey!",
   body = "Build strength, energy, and connection together with simple family-friendly fitness that fits your everyday life.",
-  logos = [],
-  primaryCta = { label: "Programs", href: "#" },
-  secondaryCta = { label: "Join Now", href: "mailto:info@gethyped.nl" },
+  logos = EMPTY_LOGOS,
+  primaryCta = { label: "Programs", href: "/services" },
+  secondaryCta = { label: "Join Now", href: "/contact-us" },
   contactHref = "mailto:hallo@fitmomclub.nl",
   badgeInitials = "FMC",
   badgeTagline = "GET RESULTS • FMC FAMILY • GET STRONGER •",
@@ -257,7 +247,7 @@ export default function FooterWithCta({
   logoTo = "/",
   logoHref,
   // Content used only by the compact mobile/tablet layout below `xl`.
-  mobileCtaLabel = "Get Hyped! Neem contact op",
+  mobileCtaLabel = "Start Your Free Trial",
   legalLinks = [
     { label: "Algemene voorwaarden", href: "#" },
     { label: "Privacyverklaring", href: "#" },
@@ -265,7 +255,14 @@ export default function FooterWithCta({
   credit = "© Design by Dylan",
 }) {
   const rootRef = useRef(null);
-  const styleId = useId();
+  // useId() returns something like ":r4:" — valid for a DOM id attribute,
+  // but colons are NOT legal in a CSS <custom-ident>. Used raw, the
+  // `@keyframes hypeStampIn-${styleId}` rule below silently fails to parse,
+  // so every stamp's `animation` points at a keyframes rule that doesn't
+  // exist — the trail never animates. Strip the colons to get a safe id
+  // usable both in CSS (keyframes name) and in the SVG id/href pair.
+  const rawId = useId();
+  const styleId = rawId.replace(/:/g, "");
   const [motionEnabled, setMotionEnabled] = useState(false);
 
   useEffect(() => {
@@ -368,15 +365,15 @@ export default function FooterWithCta({
         </div>
 
         {/* CTA button */}
-        <a
-          href={contactHref}
+        <Link
+          to={"/contact-us"}
           className="flex items-center gap-3 rounded-full bg-[#F1552B] py-3 pl-6 pr-2 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 sm:py-3.5 sm:pl-7 sm:text-base md:text-lg"
         >
           {mobileCtaLabel}
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 sm:h-10 sm:w-10">
             <Flame className="h-4 w-4 text-white sm:h-[18px] sm:w-[18px]" />
           </span>
-        </a>
+        </Link>
 
         {/* Nav pills */}
         <nav
@@ -420,22 +417,11 @@ export default function FooterWithCta({
           </a>
         </div>
 
-        {/* Address */}
-        <p className="text-sm leading-relaxed sm:text-base">
-          Beltrumsestraat 6,
-          <br />
-          7141 AL Groenlo
-        </p>
 
         {/* Legal + credits */}
         <div className="mt-2 flex flex-col items-center gap-1.5 text-xs text-[#5b5750] sm:text-sm">
-          {legalLinks.map((l) => (
-            <a key={l.label} href={l.href} className="hover:underline">
-              {l.label}
-            </a>
-          ))}
-          <span className="mt-1.5">© {new Date().getFullYear()} Get Hyped</span>
-          <span>{credit}</span>
+          
+          <span className="mt-1.5">© {new Date().getFullYear()} FitMom Club Family</span>
         </div>
       </div>
 
@@ -486,25 +472,25 @@ export default function FooterWithCta({
           ) : null}
 
           <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8">
-            <a
-              href={secondaryCta.href}
+            <Link
+              to={secondaryCta.href}
               className="flex items-center gap-3 rounded-full border-2 border-black bg-white pl-4 pr-1.5 py-1.5 text-xs font-semibold text-black transition-transform duration-200 hover:-translate-y-0.5 sm:pl-5 sm:text-sm lg:text-base"
             >
               {secondaryCta.label}
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#141414] sm:h-8 sm:w-8">
                 <ArrowRight className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4" />
               </span>
-            </a>
+            </Link>
 
-            <a
-              href={primaryCta.href}
+            <Link
+              to={primaryCta.href}
               className="flex items-center gap-2 rounded-full bg-[#F1552B] px-5 py-3 text-xs font-medium text-white transition-transform duration-200 hover:-translate-y-0.5 sm:px-6 sm:py-3.5 sm:text-sm lg:text-base"
             >
               {primaryCta.label}
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 sm:h-7 sm:w-7">
                 <Flame className="h-3 w-3 text-white sm:h-3.5 sm:w-3.5" />
               </span>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -562,7 +548,7 @@ export default function FooterWithCta({
               </div>
 
               <div className="mt-2 flex flex-wrap justify-between gap-3 text-xs text-[#5b5750] sm:mt-4 sm:text-[0.86rem]">
-                <span>© 2026 Get Hyped</span>
+                <span>© 2026 FitMom Club Family</span>
               </div>
             </div>
 
@@ -574,12 +560,7 @@ export default function FooterWithCta({
                 <br />
                 <a href="tel:+31631328354">+31 6 3132 8354</a>
               </p>
-              <h3 className="mb-2 text-lg font-semibold tracking-tight sm:text-xl">Adres</h3>
-              <p className="mb-5 text-sm leading-normal sm:mb-6 sm:text-[0.98rem]">
-                Beltrumsestraat 6,
-                <br />
-                7141 AL Groenlo
-              </p>
+             
             </div>
           </div>
         </div>

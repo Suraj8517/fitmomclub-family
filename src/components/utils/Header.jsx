@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
-
+import NavLink from "../utils/navButtons";
 // Update the `to` paths to match your router setup
 const NAV_LINKS = [
   { label: "Home", to: "/" },
@@ -11,31 +11,7 @@ const NAV_LINKS = [
   { label: "Contact", to: "/contact-us" },
 ];
 
-function NavLink({ label, to }) {
-  return (
-    <Link
-      to={to}
-      className="group relative px-4 py-2 text-sm font-semibold inline-block"
-    >
-      {/* orange layer: grows up from the bottom first */}
-      <span className="absolute inset-0 rounded-md bg-primary-orange origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-out" />
 
-      {/* black layer: grows up from the bottom right after, inset slightly from
-          the top so a sliver of the orange layer stays visible as a "border" */}
-      <span className="absolute left-0 right-0 bottom-0 top-[3px] rounded-md bg-text origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300 delay-75 ease-out" />
-
-      {/* rolling text */}
-      <span className="relative z-10 block h-[18px] overflow-hidden leading-[18px]">
-        <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
-          {label}
-        </span>
-        <span className="block absolute inset-0 translate-y-full text-primary-white transition-transform duration-300 ease-out group-hover:translate-y-0">
-          {label}
-        </span>
-      </span>
-    </Link>
-  );
-}
 
 function NavPill() {
   return (
@@ -126,7 +102,7 @@ export default function Header() {
         </nav>
 
         <Link
-          to="/join"
+          to="/contact-us"
           onClick={closeMenu}
           className="inline-flex items-center gap-3 rounded-xl bg-text py-1 pl-4 pr-1 text-sm font-semibold text-primary-white transition-transform duration-200 active:scale-95"
         >
@@ -149,7 +125,7 @@ export default function Header() {
 
           {/* CTA button */}
           <Link
-            to="/join"
+            to="/contact-us"
             className="hidden lg:inline-flex items-center gap-3 bg-primary-pink text-text font-semibold text-sm pl-3 pr-1 py-1 rounded-xl transition-all duration-300 ease-out hover:opacity-90 hover:-rotate-3 hover:scale-105"
           >
             Join Now

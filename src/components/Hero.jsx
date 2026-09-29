@@ -37,7 +37,7 @@ const cards = [
     src: vid2,
     poster: "...",
     alt: "Family staying active",
-    overlay: "MOVE",
+    overlay: "Family Fitness",
     rotate: 6,
     mobileRotate: 0,
   },
@@ -225,7 +225,7 @@ export default function HeroSection() {
                     aria-label={card.alt}
                   />
                   {card.overlay && (
-                    <span className="absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap text-xl font-black uppercase text-primary-white [text-shadow:2px_2px_0_rgba(0,0,0,0.5)] sm:bottom-6 sm:text-2xl lg:text-3xl">
+                    <span className="absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap text-xl font-light uppercase text-primary-white [text-shadow:2px_2px_0_rgba(0,0,0,0.5)] sm:bottom-6 sm:text-2xl lg:text-3xl">
                       {card.overlay}
                     </span>
                   )}

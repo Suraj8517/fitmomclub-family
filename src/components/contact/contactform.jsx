@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Clock, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 
+// Google Apps Script web app (/exec URL). Set it in .env as:
+// VITE_CONTACT_FORM_URL=https://script.google.com/macros/s/XXXX/exec
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbx46drDEF_arrFAB3MmbC8zE9w4sqAK_PymPf7o6ghZXpYbYjiCNP-4SzYfPncQNaE/exec";
+
 // TODO: replace these placeholders with your real details.
 const CONTACT = {
   email: "[Email]",
@@ -85,25 +89,46 @@ function PrimaryContactLink({ href, value, isFirst }) {
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget; // grab before the await
+    const fd = new FormData(form);
 
-    const payload = {
-      name: fd.get("name"),
-      email: fd.get("email"),
-      whoIsJoining: fd.get("who"),
-      goals: fd.getAll("goals"),
-      height: fd.get("height"),
-      weight: fd.get("weight"),
-      message: fd.get("message"),
-    };
+    // Keys must match the sheet headers exactly:
+    // date | name | email | joinee | goal | height | weight | message
+    const params = new URLSearchParams({
+      name: fd.get("name") || "",
+      email: fd.get("email") || "",
+      joinee: fd.get("who") || "",
+      goal: fd.getAll("goals").join(", "), // e.parameter keeps one value per key, so join here
+      height: fd.get("height") || "",
+      weight: fd.get("weight") || "",
+      message: fd.get("message") || "",
+    });
 
-    // TODO: send `payload` to your backend or form service (Formspree, EmailJS, your API...).
-    console.log("Contact form submitted:", payload);
-
-    setSubmitted(true);
+    setSending(true);
+    setError("");
+    try {
+      // urlencoded body is a "simple" request, so no CORS preflight is needed
+      const res = await fetch(SHEET_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params.toString(),
+      });
+      const text = await res.text();
+      let data = {};
+      try { data = JSON.parse(text); } catch { /* non-JSON reply */ }
+      if (data.result !== "success") throw new Error(data.error || "Submission failed");
+      setSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong. Please try again or email us directly.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -300,12 +325,17 @@ export default function ContactPage() {
                       />
                     </Field>
 
+                    {error && <p className="text-sm font-semibold text-red-600">{error}</p>}
+
                     <button
                       type="submit"
-                      className="inline-flex w-full items-center justify-between gap-4 rounded-full bg-primary-orange py-3.5 pl-6 pr-1.5 text-base font-semibold text-white transition-transform hover:scale-[1.02] active:scale-[0.98] sm:w-auto sm:justify-center"
+                      disabled={sending}
+                      className="inline-flex w-full items-center justify-between gap-4 rounded-full bg-primary-orange py-3.5 pl-6 pr-1.5 text-base font-semibold text-white transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 sm:w-auto sm:justify-center"
                     >
-                      Send Message
-                     
+                      {sending ? "Sending..." : "Send Message"}
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20">
+                        <ArrowRight size={18} />
+                      </span>
                     </button>
                   </form>
                 )}

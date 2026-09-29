@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 /**
  * ShapeCard — a clipped-corner promo card with a heading, CTA button,
@@ -90,9 +91,9 @@ const ShapeCard = ({
           {/* =========================
               CARD BUTTON
           ========================== */}
-          <button
+          <Link
             type="button"
-            onClick={onButtonClick}
+            to={"/contact-us"}
             className="
               absolute
               bottom-[10%]
@@ -118,14 +119,14 @@ const ShapeCard = ({
             style={{ backgroundColor: buttonColor }}
           >
             {buttonText}
-          </button>
+          </Link>
 
           {/* =========================
               ARROW BUTTON
           ========================== */}
-          <button
+          <Link
             type="button"
-            onClick={onArrowClick}
+            to={"/contact-us"}
             aria-label="Open card"
             className="
               absolute
@@ -172,7 +173,7 @@ const ShapeCard = ({
               <path d="M6 18L18 6" />
               <path d="M10 6H18V14" />
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
     </div>

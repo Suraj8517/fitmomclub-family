@@ -4,12 +4,17 @@ import HeroSecondSection from '../components/HeroSecondSection'
 import ExpertiseStack from '../components/ExpertiseStacking'
 import FamilyTestimonials from '../components/Testimonials'
 import Cta from '../components/utils/CTA'
+import JoinNow from '../components/utils/joinNowButton'
 
 function Home() {
+
   return (
     <div>
+     
      <HeroSection/> 
+    
      <HeroSecondSection/>
+     
      <ExpertiseStack/>
      <FamilyTestimonials/>
      <Cta/>

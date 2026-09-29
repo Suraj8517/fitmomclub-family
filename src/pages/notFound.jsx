@@ -8,7 +8,7 @@ export default function NotFound({
   heading = "Not Found",
   body = "The page you are looking for is missing, has been moved, or never existed. Return to the homepage and try again.",
   homeLabel = "Return to Home",
-  contactHref = "mailto:info@gethyped.nl",
+  contactHref = "/contact-us",
   contactLabel = "Contact Us",
 }) {
   return (
@@ -46,7 +46,7 @@ export default function NotFound({
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3 sm:mt-9">
           <Link
             to={homeHref}
-            className="flex items-center gap-3 rounded-full bg-[#141414] py-3 pl-5 pr-2 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 sm:py-3.5 sm:pl-6 sm:text-base"
+            className="flex items-center gap-3 rounded-full bg-[#141414] py-3 pl-5 pr-2 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 sm:py-3.5 sm:px-6 sm:text-base"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 sm:h-9 sm:w-9">
               <ArrowLeft className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4" />
@@ -54,15 +54,15 @@ export default function NotFound({
             {homeLabel}
           </Link>
 
-          <a
-            href={contactHref}
-            className="flex items-center gap-3 rounded-full bg-[#F1552B] py-3 pl-5 pr-2 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 sm:py-3.5 sm:pl-6 sm:text-base"
+          <Link
+            to={contactHref}
+            className="flex items-center gap-3 rounded-full bg-[#F1552B] py-3 pl-5 pr-2 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 sm:py-3.5 sm:px-6 sm:text-base"
           >
             {contactLabel}
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 sm:h-9 sm:w-9">
               <Flame className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4" />
             </span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

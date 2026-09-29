@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { Link } from "react-router-dom";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
 import community from "../assets/home/expertise/community.webp";
 import plan from "../assets/home/expertise/plan.webp";
 import quiz from "../assets/home/expertise/quiz.webp";
-import JoinNowButton from "./utils/joinNowButton";
+import JoinNow from "./utils/joinNowButton";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -20,7 +21,7 @@ const expertises = [
     description:
       "Tell us about your household goals, schedules, and who's joining in so we can match your family with the right online fitness program.",
     ctaLabel: "Take the Quiz",
-    ctaHref: "#",
+    ctaLink: "/",
     image: quiz,
     imageRotate: 4,
     cardBg: "bg-white",
@@ -42,7 +43,7 @@ const expertises = [
     description:
       "Receive workout plans for mom, dad, and the kids designed around your real life—not a fantasy schedule with two free hours a day.",
     ctaLabel: "Get Your Plan",
-    ctaHref: "#",
+    ctaLink: "/services",
     image: plan,
     imageRotate: -4,
     cardBg: "bg-primary-pink",
@@ -64,7 +65,7 @@ const expertises = [
     description:
       "Connect with thousands of families doing the same workouts, sharing wins, and cheering each other on every step of the way.",
     ctaLabel: "Join the Community",
-    ctaHref: "#",
+    ctaLink: "/contact-us",
     image: community,
     imageRotate: -3,
     cardBg: "bg-primary-green",
@@ -175,14 +176,15 @@ export default function ExpertiseStack() {
                     {c.description}
                   </p>
                   <div className="mt-6">
-
-<JoinNowButton
+<Link to={c.ctaLink}>
+<JoinNow
   text={c.ctaLabel}
   bg={c.ctaBg}
   color={c.ctaText}
   circleBg={c.circleBg}
   circleColor={c.circleIcon}
-/>                 </div>
+/></Link>
+                 </div>
                 </div>
               </div>
 

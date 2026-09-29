@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import fmclogo from "../../assets/home/fmc.png"
+import NavLink from "./navButtons";
 
 const NAV = [
   { label: "About", to: "/about" },
@@ -10,43 +11,29 @@ const NAV = [
 
 const SOCIALS = [
   {
-    label: "LinkedIn",
-    href: "#",
-    icon: (
-      <path
-        fill="currentColor"
-        d="M4.5 9h3v10.5h-3V9Zm1.5-4.8a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM10 9h2.9v1.5c.5-.9 1.6-1.7 3.2-1.7 3.1 0 3.9 2 3.9 4.7v6h-3v-5.3c0-1.4-.2-2.7-1.8-2.7s-2.1 1.1-2.1 2.7v5.3H10V9Z"
-      />
-    ),
-  },
-  {
-    label: "TikTok",
-    href: "#",
-    icon: (
-      <path
-        fill="currentColor"
-        d="M16.5 3h-3v11.8a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.2a5.6 5.6 0 1 0 4.8 5.6V8.9a6.5 6.5 0 0 0 3.8 1.2V7.1A3.8 3.8 0 0 1 16.5 3Z"
-      />
-    ),
-  },
-  {
     label: "Instagram",
     href: "#",
     icon: (
       <g fill="none" stroke="currentColor" strokeWidth="2">
         <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
         <circle cx="12" cy="12" r="4" />
-        <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+        <circle
+          cx="17.2"
+          cy="6.8"
+          r="1"
+          fill="currentColor"
+          stroke="none"
+        />
       </g>
     ),
   },
   {
-    label: "YouTube",
+    label: "Facebook",
     href: "#",
     icon: (
       <path
         fill="currentColor"
-        d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z"
+        d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.7-1.6h1.8V3.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V10H8v3h2.6v8h2.9Z"
       />
     ),
   },
@@ -202,13 +189,7 @@ export default function Footer({
           <div className="order-2 flex flex-col gap-5 sm:gap-6 md:order-2 lg:order-none">
             <nav aria-label="Footer" className="flex flex-wrap gap-2 sm:gap-2.5">
               {NAV.map((n) => (
-                <Link
-                  key={n.label}
-                  to={n.to}
-                  className="rounded-[10px] bg-white px-3 py-2.5 text-sm font-semibold tracking-tight focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#FF5A1F] sm:px-3.5 sm:py-3 sm:text-base"
-                >
-                  {n.label}
-                </Link>
+               <NavLink key={n.label} label={n.label} to={n.to} />
               ))}
             </nav>
 
@@ -221,7 +202,7 @@ export default function Footer({
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="grid h-10 w-10 place-items-center rounded-full bg-white focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#FF5A1F] sm:h-12 sm:w-12"
+                  className="grid h-10 w-10 place-items-center rounded-full bg-white focus-visible:outline focus-visible:outline-[3px] hover:bg-orange-100 focus-visible:outline-offset-2 focus-visible:outline-[#FF5A1F] sm:h-12 sm:w-12"
                 >
                   <svg viewBox="0 0 24 24" className="h-[18px] w-[18px] sm:h-[22px] sm:w-[22px]">
                     {s.icon}
@@ -231,7 +212,7 @@ export default function Footer({
             </div>
 
             <div className="mt-2 flex flex-wrap justify-between gap-3 text-xs text-[#5b5750] sm:mt-4 sm:text-[0.86rem]">
-              <span>© {new Date().getFullYear()} Get Hyped</span>
+              <span>© {new Date().getFullYear()} FitMom Club Family</span>
             </div>
           </div>
 

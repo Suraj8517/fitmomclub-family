@@ -1,15 +1,17 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
-function JoinNowButton({
+function JoinNow({
   text = "Join Now",
   bg = "bg-primary-white",
   color = "text-white",
   circleBg = "bg-white",
   circleColor = "text-primary-white",
 }) {
+  console.log("JoinNowButton props:", { text, bg, color, circleBg, circleColor });
   return (
-    <button
+    <Link to={"/contact-us"}
       className={`group inline-flex items-center gap-4 rounded-full ${bg} py-2 pl-6 pr-2 font-inter text-base font-medium ${color} transition-opacity hover:opacity-90`}
     >
       <span>{text}</span>
@@ -27,8 +29,8 @@ function JoinNowButton({
           className="absolute -translate-x-4 translate-y-4 -rotate-45 opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 motion-reduce:transition-none"
         />
       </span>
-    </button>
+    </Link>
   );
 }
 
-export default JoinNowButton;
+export default JoinNow;
