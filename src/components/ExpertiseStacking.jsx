@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import community from "../assets/home/expertise/community.webp";
 import plan from "../assets/home/expertise/plan.webp";
 import quiz from "../assets/home/expertise/quiz.webp";
-import JoinNow from "./utils/joinNowButton";
+import JoinNow from "./utils/joinnowbutton";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
