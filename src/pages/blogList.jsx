@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { client, urlFor } from "../sanityClient";
+import { client, urlFor } from "../sanityclient";
 
 const POSTS_PER_PAGE = 9; // 3 columns x 3 rows
 
