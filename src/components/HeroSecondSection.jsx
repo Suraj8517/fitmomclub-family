@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import img from "../assets/home/img1.webp";
-import JoinNowButton from "./utils/joinNowButton";
+import JoinNowButton from "./utils/joinnowbutton";
 
 const PORTRAIT_SRC = img;
 
