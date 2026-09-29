@@ -454,7 +454,7 @@ export default function FooterWithCta({
               <textPath href={`#badge-circle-${styleId}`}>{badgeTagline}</textPath>
             </text>
           </svg>
-          <span className="relative rounded-full bg-[#141414] px-2.5 py-1.5 text-base font-black text-white sm:px-3.5 sm:text-xl md:text-2xl">
+          <span className="relative rotate-14 rounded-full bg-[#141414] px-2.5 py-1.5 text-base font-black text-white sm:px-3.5 sm:text-xl md:text-2xl">
             {badgeInitials}
           </span>
         </a>

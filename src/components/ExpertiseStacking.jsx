@@ -127,7 +127,7 @@ export default function ExpertiseStack() {
   }, []);
 
   return (
-    <section className="bg-bg font-inter pt-14 sm:pt-20">
+    <section id="how-it-works" className="bg-bg font-inter pt-14 sm:pt-20">
       <div className="px-4 text-center">
         <h2 className="font-inter text-4xl font-bold sm:text-5xl">How It Works</h2>
       </div>

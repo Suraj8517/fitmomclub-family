@@ -90,6 +90,12 @@ export default function IntroSection() {
 
       {/* Scroll indicator */}
       <button
+      onClick={() => {
+    document.getElementById("how-it-works")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
         ref={scrollBtnRef}
         type="button"
         aria-label="Scroll naar beneden"
