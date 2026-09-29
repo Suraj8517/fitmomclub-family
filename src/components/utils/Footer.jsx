@@ -216,16 +216,11 @@ export default function Footer({
           <div id="contact" className="relative order-1 md:order-3 lg:order-none md:col-span-2 lg:col-span-1">
             <h3 className="mb-2 text-lg font-semibold tracking-tight sm:text-xl">Contact</h3>
             <p className="mb-5 text-sm leading-normal sm:mb-6 sm:text-[0.98rem]">
-              <a href="mailto:info@gethyped.nl">info@gethyped.nl</a>
+              <a href="mailto:info@gethyped.nl">fitmomfamily@gmail.com</a>
               <br />
-              <a href="tel:+31631328354">+31 6 3132 8354</a>
+              <a href="tel:+31631328354">+91 8870444144</a>
             </p>
-            <h3 className="mb-2 text-lg font-semibold tracking-tight sm:text-xl">Adres</h3>
-            <p className="mb-5 text-sm leading-normal sm:mb-6 sm:text-[0.98rem]">
-              Beltrumsestraat 6,
-              <br />
-              7141 AL Groenlo
-            </p>
+           
           </div>
         </div>
       </div>
