@@ -10,7 +10,6 @@ import NotFound from './notFound';
 import ScrollToTop from '../components/utils/scrollToTop';
 import BlogList from './blogList';
 import BlogPost from './blogPost';
-import JoinNow from '../components/utils/joinNowButton';
 
 function LandingPage() {
   const location = useLocation();
