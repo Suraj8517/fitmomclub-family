@@ -12,7 +12,7 @@ const NAV = [
 const SOCIALS = [
   {
     label: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/fitmom.family/",
     icon: (
       <g fill="none" stroke="currentColor" strokeWidth="2">
         <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
@@ -29,7 +29,7 @@ const SOCIALS = [
   },
   {
     label: "Facebook",
-    href: "#",
+    href: "https://www.facebook.com/Fitmomclub.family",
     icon: (
       <path
         fill="currentColor"
@@ -39,10 +39,6 @@ const SOCIALS = [
   },
 ];
 
-// Wordmark logo, overflowing past the section edge on desktop. Pass
-// `logoSrc` to use your own logo image — the markup falls back to a
-// text wordmark automatically when no src is given. `to` routes via
-// React Router; if omitted it falls back to a plain `href` anchor.
 function BrandLogo({ src, alt = "Logo", to, href = "#" }) {
   const Wrapper = to ? Link : "a";
   const wrapperProps = to ? { to } : { href };

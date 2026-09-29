@@ -8,9 +8,9 @@ const SHEET_URL = "https://script.google.com/macros/s/AKfycbx46drDEF_arrFAB3MmbC
 // TODO: replace these placeholders with your real details.
 const CONTACT = {
   email: "[Email]",
-  phone: "[Your Phone Number]",
-  instagram: "#", // [link]
-  facebook: "#", // [link]
+  phone: "[ Phone Number]",
+  instagram: "https://www.instagram.com/fitmom.family/", // [link]
+  facebook: "https://www.facebook.com/Fitmomclub.family", // [link]
   hours: "Mon – Fri, 9 AM – 5 PM",
 };
 
