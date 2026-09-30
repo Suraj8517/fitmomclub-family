@@ -170,17 +170,17 @@ export default function HeroSection() {
         <div ref={headlineRef}>
           {/* Phones: one "Get …" per line. sm and up: original two-line break. */}
           <h1 className="text-[14vw] font-semibold leading-[0.95] tracking-tight sm:text-[8vw] lg:text-[7vw]">
-            <span className="block sm:inline">Get Fit.</span>{" "}
+            <span className="block sm:inline">Get Fit Together.</span>{" "}
             <span className="block sm:inline">
-              Get
-              <br className="hidden sm:block" /> Healthy.
+        Grow
+              <br className="hidden sm:block" />  Stronger
             </span>{" "}
-            <span className="block sm:inline">Get Results.</span>
+            <span className="block sm:inline">as a Family</span>
           </h1>
 
           <p className="mt-6 max-w-md font-jakarta text-xl font-semibold leading-tight sm:mt-10 sm:text-2xl sm:leading-normal">
-            Fitness Programs for the Whole
-            <br className="hidden sm:block" /> Family Real Results, No Gym Required
+            Online fitness programs for moms, dads, and kids. Short workouts,
+            <br className="hidden sm:block" />  no gym needed, and real results you can keep up.
           </p>
         </div>
 
