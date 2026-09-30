@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-const DURATION = 4000; // fill time in ms
-const HOLD = 400; // pause on the fully filled word
-const EXIT = 1000; // scale-up + fade-out time
+const DURATION = 3000; // fill time in ms
+const HOLD = 200; // pause on the fully filled word
+const EXIT = 2000; // scale-up + fade-out time
 
 // Wave path: wavelength 450, repeated so it can scroll seamlessly
 const wave =
