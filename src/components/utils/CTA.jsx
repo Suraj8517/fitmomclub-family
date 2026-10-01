@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useId } from "react";
 import { Link } from "react-router-dom";
 import { Flame, ArrowRight, FileMinusCorner } from "lucide-react";
 import fmclogo from "../../assets/home/fmc.png"
+import NavLink from "./navButtons";
 const NAV = [
 
   { label: "About", to: "/about" },
@@ -518,15 +519,11 @@ export default function FooterWithCta({
             {/* nav + socials + credits */}
             <div className="order-2 flex flex-col gap-5 sm:gap-6 md:order-2 lg:order-none">
               <nav aria-label="Footer" className="xl:flex flex-wrap gap-2 sm:gap-2.5 hidden">
-                {NAV.map((n) => (
-                  <Link
-                    key={n.label}
-                    to={n.to}
-                    className="rounded-[10px] bg-white px-3 py-2.5 text-sm font-semibold tracking-tight focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#FF5A1F] sm:px-3.5 sm:py-3 sm:text-base"
-                  >
-                    {n.label}
-                  </Link>
-                ))}
+                 <nav aria-label="Footer" className="flex flex-wrap gap-2 sm:gap-2.5">
+                              {NAV.map((n) => (
+                               <NavLink key={n.label} label={n.label} to={n.to} />
+                              ))}
+                            </nav>
               </nav>
 
               <div className="flex flex-wrap items-center gap-2">

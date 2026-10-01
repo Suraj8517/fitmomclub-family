@@ -136,7 +136,7 @@ export default function Loader({ onDone }) {
             <g clipPath="url(#family-clip)">
               <g transform={`translate(0 ${level})`}>
                 <g opacity="0.4">
-                  <path d={wave} fill="#161616">
+                  <path d={wave} fill="#33C791">
                     <animateTransform
                       attributeName="transform"
                       type="translate"
@@ -162,14 +162,14 @@ export default function Loader({ onDone }) {
 
             {/* small FMC above the first F */}
             <text
-              x="6"
-              y="54"
-              fontSize="30"
-              letterSpacing="6"
+              x="4"
+              y="68"
+              fontSize="16"
+              letterSpacing="2"
               className="fm-tag font-inter font-bold"
               fill="#161616"
             >
-              FMC
+              FITMOM CLUB
             </text>
           </svg>
 

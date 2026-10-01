@@ -5,7 +5,7 @@ const DEFAULT_PROGRAMS = [
     tag: "Online",
     description:
       "Short, effective online workouts the whole family can do together or separately, on your own schedule. No gym, minimal equipment, maximum results.",
-    tone: "pink",
+    tone: "orange",
     span: "lg:col-span-4",
     featured: true,
     href: "#",
@@ -15,7 +15,7 @@ const DEFAULT_PROGRAMS = [
     tag: "1:1 Coaching",
     description:
       "Work directly with a certified coach who builds a fitness program around each parent's goals and schedule, with weekly check-ins to keep you both accountable.",
-    tone: "white",
+    tone: "blue",
     span: "lg:col-span-2",
     href: "#",
   },
@@ -24,7 +24,7 @@ const DEFAULT_PROGRAMS = [
     tag: "Kids",
     description:
       "Fun, age-appropriate movement activities designed to get kids off screens and moving. Easy to fold into family workout time.",
-    tone: "dark",
+    tone: "red",
     span: "lg:col-span-2",
     href: "#",
   },
@@ -33,7 +33,7 @@ const DEFAULT_PROGRAMS = [
     tag: "Prenatal",
     description:
       "Safe, trainer-approved programs for pregnancy and postpartum recovery, built with certified pre/postnatal specialists so moms can rebuild strength with confidence.",
-    tone: "white",
+    tone: "pink",
     span: "lg:col-span-2",
     href: "#",
   },
@@ -43,7 +43,7 @@ const DEFAULT_PROGRAMS = [
     tag: "Community",
     description:
       "Join a private community of families doing the same workouts, sharing wins, and keeping each other accountable. Motivation is easier when the whole household is in it together.",
-    tone: "pink",
+    tone: "green",
     span: "lg:col-span-2",
     href: "#",
   },
@@ -55,6 +55,30 @@ const TONES = {
     desc: "text-text/75",
     pill: "bg-primary-white text-text",
     btn: "bg-text text-primary-white",
+  },
+  blue: {
+    card: "bg-primary-blue text-text",
+    desc: "text-text/75",
+    pill: "bg-primary-white text-text",
+    btn: "bg-text text-primary-white",
+  },
+  green: {
+    card: "bg-primary-green text-text",
+    desc: "text-text/75",
+    pill: "bg-primary-white text-text",
+    btn: "bg-text text-primary-white",
+  },
+  orange: {
+    card: "bg-primary-orange text-white",
+    desc: "text-white/75",
+    pill: "bg-primary-white text-text",
+    btn: "bg-text text-primary-white",
+  },
+  red: {
+    card: "bg-primary-red text-primary-white",
+    desc: "text-primary-white/80",
+    pill: "bg-primary-white text-text",
+    btn: "bg-primary-white text-text",
   },
   white: {
     card: "bg-primary-white text-text",
