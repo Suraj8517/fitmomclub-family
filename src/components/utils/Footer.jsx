@@ -86,7 +86,7 @@ export default function Footer({
     { label: "Algemene voorwaarden", href: "#" },
     { label: "Privacyverklaring", href: "#" },
   ],
-  credit = "© Design by Dylan",
+  credit = "© FitMom Club Family",
 }) {
   return (
     <section className="relative isolate overflow-hidden bg-[#FBF3EA] font-['Inter',system-ui,sans-serif] text-[#161616]">
@@ -136,31 +136,17 @@ export default function Footer({
 
         {/* Contact */}
         <div className="flex flex-col gap-1 text-sm leading-relaxed sm:text-base">
-          <a href="mailto:info@gethyped.nl" className="hover:underline">
-            info@gethyped.nl
+          <a href="mailto:fitmomfamily@gmail.com" className="hover:underline">
+            fitmomfamily@gmail.com
           </a>
-          <a href="tel:+31631328354" className="hover:underline">
-            +31 6 3132 8354
+          <a href="tel:+918870444144" className="hover:underline">
+            +91 8870444144
           </a>
         </div>
 
-        {/* Address */}
-        <p className="text-sm leading-relaxed sm:text-base">
-          Beltrumsestraat 6,
-          <br />
-          7141 AL Groenlo
-        </p>
+      
 
-        {/* Legal + credits */}
-        <div className="mt-2 flex flex-col items-center gap-1.5 text-xs text-[#5b5750] sm:text-sm">
-          {legalLinks.map((l) => (
-            <a key={l.label} href={l.href} className="hover:underline">
-              {l.label}
-            </a>
-          ))}
-          <span className="mt-1.5">© {new Date().getFullYear()} Get Hyped</span>
-          <span>{credit}</span>
-        </div>
+       
       </div>
 
       {/* ============================================================ */}
@@ -216,9 +202,9 @@ export default function Footer({
           <div id="contact" className="relative order-1 md:order-3 lg:order-none md:col-span-2 lg:col-span-1">
             <h3 className="mb-2 text-lg font-semibold tracking-tight sm:text-xl">Contact</h3>
             <p className="mb-5 text-sm leading-normal sm:mb-6 sm:text-[0.98rem]">
-              <a href="mailto:info@gethyped.nl">fitmomfamily@gmail.com</a>
+              <a href="mailto:fitmomfamily@gmail.com">fitmomfamily@gmail.com</a>
               <br />
-              <a href="tel:+31631328354">+91 8870444144</a>
+              <a href="tel:+918870444144">+91 8870444144</a>
             </p>
            
           </div>

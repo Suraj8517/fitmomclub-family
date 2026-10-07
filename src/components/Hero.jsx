@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import vid1 from "../../src/assets/videos/video1.mp4";
 import vid2 from "../../src/assets/videos/video2.mp4";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // rotate       -> tilt on sm and up (fanned deck)
 // mobileRotate -> tilt on phones (only the first two cards are shown there)
@@ -163,13 +166,114 @@ export default function HeroSection() {
     return () => ctx.revert();
   }, []);
 
+  /* ------------------------------------------------------------------ */
+  /* Scroll-linked animations (scrub => automatically reverse on        */
+  /* scroll-up). Kept in a separate effect and applied ONLY to elements  */
+  /* the load/hover animations above never touch:                        */
+  /*   - the h1 / paragraph (children of headlineRef)                    */
+  /*   - the card stack container                                        */
+  /*   - the <video> / stat number INSIDE each card                      */
+  /* so there are no conflicts with card rotate / scale / margin / y.    */
+  /* ------------------------------------------------------------------ */
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return undefined;
+    const q = gsap.utils.selector(section);
+
+    const mm = gsap.matchMedia();
+
+    const build = (visibleCards) => {
+      const scrollOut = {
+        trigger: section,
+        start: "top top",
+        end: "bottom top",
+        scrub: 0.6,
+      };
+
+      // Headline + subtext drift up and soften as the hero scrolls away
+      gsap.to(q('[data-hero="title"]'), {
+        yPercent: -14,
+        opacity: 0.15,
+        ease: "none",
+        scrollTrigger: scrollOut,
+      });
+      gsap.to(q('[data-hero="sub"]'), {
+        yPercent: -28,
+        opacity: 0,
+        ease: "none",
+        scrollTrigger: scrollOut,
+      });
+
+      // Whole card stack lags behind the scroll (parallax depth)
+      gsap.to(q('[data-hero="stack"]'), {
+        y: 60,
+        ease: "none",
+        scrollTrigger: scrollOut,
+      });
+
+      // Media / numbers inside each card move at their own speed
+      visibleCards.forEach((card, i) => {
+        const dir = i % 2 === 0 ? 1 : -1;
+        const video = card.querySelector("video");
+        const stat = card.querySelector("span");
+
+        if (video) {
+          gsap.fromTo(
+            video,
+            { scale: 1.15, yPercent: -6 * dir },
+            {
+              yPercent: 6 * dir,
+              ease: "none",
+              scrollTrigger: {
+                trigger: card,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        } else if (stat) {
+          gsap.fromTo(
+            stat,
+            { y: 18 },
+            {
+              y: -18,
+              ease: "none",
+              scrollTrigger: {
+                trigger: card,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        }
+      });
+    };
+
+    // phones only show the first two cards
+    mm.add(
+      "(prefers-reduced-motion: no-preference) and (max-width: 639px)",
+      () => build(cardRefs.current.slice(0, 2))
+    );
+    mm.add(
+      "(prefers-reduced-motion: no-preference) and (min-width: 640px)",
+      () => build(cardRefs.current)
+    );
+
+    return () => mm.revert();
+  }, []);
+
   return (
     <section ref={sectionRef} className="bg-bg font-inter text-text overflow-hidden">
       <div className="w-full px-4 pt-30 sm:px-8 sm:pt-20 lg:px-12 lg:pt-36">
         {/* Headline */}
         <div ref={headlineRef}>
           {/* Phones: one "Get …" per line. sm and up: original two-line break. */}
-          <h1 className="text-[14vw] font-semibold leading-[0.95] tracking-tight sm:text-[8vw] lg:text-[7vw]">
+          <h1
+            data-hero="title"
+            className="text-[14vw] font-semibold leading-[0.95] tracking-tight sm:text-[8vw] lg:text-[7vw]"
+          >
             <span className="block sm:inline">Get Fit Together.</span>{" "}
             <span className="block sm:inline">
         Grow
@@ -178,7 +282,10 @@ export default function HeroSection() {
             <span className="block sm:inline">as a Family</span>
           </h1>
 
-          <p className="mt-6 max-w-md font-jakarta text-xl font-semibold leading-tight sm:mt-10 sm:text-2xl sm:leading-normal">
+          <p
+            data-hero="sub"
+            className="mt-6 max-w-md font-jakarta text-xl font-semibold leading-tight sm:mt-10 sm:text-2xl sm:leading-normal"
+          >
             Online fitness programs for moms, dads, and kids. Short workouts,
             <br className="hidden sm:block" />  no gym needed, and real results you can keep up.
           </p>
@@ -187,7 +294,10 @@ export default function HeroSection() {
         {/* Card stack
             phones: two big overlapping cards that bleed slightly past the edges
             sm+:    the full fanned deck, sized in vw so it never overflows */}
-        <div className="-mx-4 mt-10 flex items-start justify-center pb-16 sm:mx-0 sm:mt-24 lg:pb-32">
+        <div
+          data-hero="stack"
+          className="-mx-4 mt-10 flex items-start justify-center pb-16 sm:mx-0 sm:mt-24 lg:pb-32"
+        >
           {cards.map((card, i) => (
             <div
               key={i}

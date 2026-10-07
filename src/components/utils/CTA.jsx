@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState, useId } from "react";
 import { Link } from "react-router-dom";
 import { Flame, ArrowRight, FileMinusCorner } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import fmclogo from "../../assets/home/fmc.png"
 import NavLink from "./navButtons";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const NAV = [
 
   { label: "About", to: "/about" },
@@ -207,6 +212,7 @@ function BrandLogo({ src, alt = "Logo", to, href = "#" }) {
         className="-mb-6 inline-flex h-16 w-40 items-end justify-start sm:h-20 sm:w-48 md:-mb-18 md:h-24 md:w-56 lg:h-68 lg:w-104 -rotate-1"
       >
         <img
+          data-d="logo"
           src={src}
           alt={alt}
           className="h-full w-auto max-w-full object-contain object-left"
@@ -278,6 +284,164 @@ export default function FooterWithCta({
   // pointer-driven (xl+) layouts in practice, since it's a hover effect —
   // harmless to keep mounted everywhere.
   const stamps = useHypeTrail(rootRef, { logos, enabled: motionEnabled });
+
+  /* ------------------------------------------------------------------ */
+  /* GSAP scroll animations (reversible on scroll-up).                   */
+  /* matchMedia so only the VISIBLE layout (mobile or xl+) is animated.  */
+  /* Elements carrying Tailwind transforms (slab skew, logo rotate,      */
+  /* hover-lift buttons) are never animated directly.                    */
+  /* ------------------------------------------------------------------ */
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return undefined;
+    const q = gsap.utils.selector(root);
+    const toggle = "play none none reverse";
+
+    const mm = gsap.matchMedia();
+
+    /* ---------- Mobile / tablet (below xl) ---------- */
+    mm.add(
+      "(prefers-reduced-motion: no-preference) and (max-width: 1279px)",
+      () => {
+        const tl = gsap.timeline({
+          defaults: { ease: "power3.out" },
+          scrollTrigger: {
+            trigger: q('[data-m="wrap"]')[0],
+            start: "top 80%",
+            toggleActions: toggle,
+          },
+        });
+
+        tl.from(q('[data-m="logo"]'), {
+          y: 60,
+          scale: 0.9,
+          opacity: 0,
+          duration: 0.9,
+        })
+          .fromTo(
+            q('[data-m="cta"]'),
+            { clipPath: "inset(0% 50% 0% 50% round 999px)", opacity: 0 },
+            {
+              clipPath: "inset(0% 0% 0% 0% round 999px)",
+              opacity: 1,
+              duration: 0.8,
+              ease: "power4.out",
+            },
+            "-=0.5"
+          )
+          .from(
+            q('[data-m="nav"]')[0].children,
+            { y: 24, opacity: 0, duration: 0.5, stagger: 0.08 },
+            "-=0.4"
+          )
+          .from(
+            q('[data-m="social"]')[0].children,
+            {
+              scale: 0,
+              opacity: 0,
+              duration: 0.5,
+              stagger: 0.1,
+              ease: "back.out(2)",
+            },
+            "-=0.3"
+          )
+          .from(
+            q('[data-m="contact"]'),
+            { y: 20, opacity: 0, duration: 0.6 },
+            "-=0.3"
+          )
+          .from(
+            q('[data-m="legal"]'),
+            { opacity: 0, duration: 0.6 },
+            "-=0.3"
+          );
+      }
+    );
+
+    /* ---------- Desktop (xl and up) ---------- */
+    mm.add(
+      "(prefers-reduced-motion: no-preference) and (min-width: 1280px)",
+      () => {
+        // Top block: heading, body, CTAs, badge
+        const top = gsap.timeline({
+          defaults: { ease: "power3.out" },
+          scrollTrigger: {
+            trigger: q('[data-d="heading"]')[0],
+            start: "top 85%",
+            toggleActions: toggle,
+          },
+        });
+
+        top
+          .from(q('[data-d="heading"]'), {
+            y: 70,
+            opacity: 0,
+            filter: "blur(10px)",
+            duration: 1,
+          })
+          .from(
+            q('[data-d="body"]'),
+            { y: 30, opacity: 0, duration: 0.7 },
+            "-=0.6"
+          )
+          .from(
+            q('[data-d="cta"]'),
+            { y: 30, opacity: 0, duration: 0.7 },
+            "-=0.5"
+          )
+          .from(
+            q('[data-d="badge"]'),
+            { scale: 0, rotate: -120, opacity: 0, duration: 1, ease: "back.out(1.7)" },
+            "-=0.9"
+          );
+
+        // Bottom block: slab, logo, nav, socials, contact
+        const bottom = gsap.timeline({
+          defaults: { ease: "power3.out" },
+          scrollTrigger: {
+            trigger: q('[data-d="footer"]')[0],
+            start: "top 80%",
+            toggleActions: toggle,
+          },
+        });
+
+        bottom
+          .from(q('[data-d="slab"]'), { opacity: 0, duration: 0.9 })
+          .from(
+            q('[data-d="logo"]'),
+            { y: 80, opacity: 0, duration: 1 },
+            "-=0.5"
+          )
+          .from(
+            q('[data-d="nav"]'),
+            { y: 24, opacity: 0, duration: 0.6 },
+            "-=0.7"
+          )
+          .from(
+            q('[data-d="social"]'),
+            { y: 24, opacity: 0, duration: 0.6 },
+            "-=0.45"
+          )
+          .from(
+            q('[data-d="contact"]'),
+            { y: 24, opacity: 0, duration: 0.6 },
+            "-=0.45"
+          );
+      }
+    );
+
+    // Layout shifts (e.g. logo image loading) change trigger positions
+    const imgs = Array.from(root.querySelectorAll("img"));
+    const refresh = () => ScrollTrigger.refresh();
+    imgs.forEach((img) => {
+      if (!img.complete) img.addEventListener("load", refresh);
+    });
+
+    return () => {
+      imgs.forEach((img) => img.removeEventListener("load", refresh));
+      mm.revert();
+    };
+  }, []);
 
   return (
     <section
@@ -354,9 +518,15 @@ export default function FooterWithCta({
       {/* Matches the compact, stacked design: big logo, single orange   */}
       {/* CTA, nav pills, socials, contact/address, then legal footer.   */}
       {/* ============================================================ */}
-      <div className="relative z-20 flex flex-col items-center gap-6 px-5 pb-10 pt-9 text-center xl:hidden sm:gap-7 sm:px-8 sm:pb-12 sm:pt-11 md:mx-auto md:max-w-2xl md:gap-8 md:px-10 md:pb-14 md:pt-14">
+      <div
+        data-m="wrap"
+        className="relative z-20 flex flex-col items-center gap-6 px-5 pb-10 pt-9 text-center xl:hidden sm:gap-7 sm:px-8 sm:pb-12 sm:pt-11 md:mx-auto md:max-w-2xl md:gap-8 md:px-10 md:pb-14 md:pt-14"
+      >
         {/* Logo */}
-        <div className="w-full max-w-[380px] sm:max-w-[460px] md:max-w-[520px]">
+        <div
+          data-m="logo"
+          className="w-full max-w-[380px] sm:max-w-[460px] md:max-w-[520px]"
+        >
           <img
             src={logoSrc}
             alt={logoAlt}
@@ -367,6 +537,7 @@ export default function FooterWithCta({
 
         {/* CTA button */}
         <Link
+          data-m="cta"
           to={"/contact-us"}
           className="flex items-center gap-3 rounded-full bg-[#F1552B] py-3 pl-6 pr-2 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 sm:py-3.5 sm:pl-7 sm:text-base md:text-lg"
         >
@@ -378,6 +549,7 @@ export default function FooterWithCta({
 
         {/* Nav pills */}
         <nav
+          data-m="nav"
           aria-label="Footer"
           className="flex flex-wrap justify-center gap-2 sm:gap-2.5"
         >
@@ -393,7 +565,7 @@ export default function FooterWithCta({
         </nav>
 
         {/* Socials */}
-        <div className="flex items-center gap-2.5 sm:gap-3">
+        <div data-m="social" className="flex items-center gap-2.5 sm:gap-3">
           {SOCIALS.map((s) => (
             <a
               key={s.label}
@@ -409,18 +581,24 @@ export default function FooterWithCta({
         </div>
 
         {/* Contact */}
-        <div className="flex flex-col gap-1 text-sm leading-relaxed sm:text-base">
-          <a href="mailto:info@gethyped.nl" className="hover:underline">
-            info@gethyped.nl
+        <div
+          data-m="contact"
+          className="flex flex-col gap-1 text-sm leading-relaxed sm:text-base"
+        >
+          <a href="mailto:fitmomfamily@gmail.com" className="hover:underline">
+            fitmomfamily@gmail.com
           </a>
-          <a href="tel:+31631328354" className="hover:underline">
-            +31 6 3132 8354
+          <a href="tel:+918870444144" className="hover:underline">
+            +91 8870444144
           </a>
         </div>
 
 
         {/* Legal + credits */}
-        <div className="mt-2 flex flex-col items-center gap-1.5 text-xs text-[#5b5750] sm:text-sm">
+        <div
+          data-m="legal"
+          className="mt-2 flex flex-col items-center gap-1.5 text-xs text-[#5b5750] sm:text-sm"
+        >
           
           <span className="mt-1.5">© {new Date().getFullYear()} FitMom Club Family</span>
         </div>
@@ -442,6 +620,7 @@ export default function FooterWithCta({
           sits above and to the right of the headline exactly like a stamp.
         */}
         <a
+          data-d="badge"
           href={contactHref}
           aria-label="Neem contact op"
           className="group absolute right-4 top-4 z-30 flex h-24 w-24 items-center justify-center sm:right-6 sm:top-6 sm:h-32 sm:w-32 md:right-8 md:top-8 md:h-36 md:w-36 lg:right-[4vw] lg:top-10 lg:h-40 lg:w-40"
@@ -462,17 +641,23 @@ export default function FooterWithCta({
 
         {/* ---------- CTA content (trail is visible around/behind this) ---------- */}
         <div className="relative z-20 px-6 pb-10 pt-16 text-left sm:px-10 sm:pt-20 md:pt-24 lg:px-[4vw] lg:pt-28">
-          <h2 className="max-w-4xl font-['Anton',Impact,sans-serif] text-[2.6rem] font-normal uppercase leading-[0.95] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+          <h2
+            data-d="heading"
+            className="max-w-4xl font-['Anton',Impact,sans-serif] text-[2.6rem] font-normal uppercase leading-[0.95] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
+          >
             {heading}
           </h2>
 
           {body ? (
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-[#161616]/70 sm:mt-5 sm:text-base lg:text-lg">
+            <p
+              data-d="body"
+              className="mt-4 max-w-lg text-sm leading-relaxed text-[#161616]/70 sm:mt-5 sm:text-base lg:text-lg"
+            >
               {body}
             </p>
           ) : null}
 
-          <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8">
+          <div data-d="cta" className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8">
             <Link
               to={secondaryCta.href}
               className="flex items-center gap-3 rounded-full border-2 border-black bg-white pl-4 pr-1.5 py-1.5 text-xs font-semibold text-black transition-transform duration-200 hover:-translate-y-0.5 sm:pl-5 sm:text-sm lg:text-base"
@@ -496,14 +681,20 @@ export default function FooterWithCta({
         </div>
 
         {/* ---------- Footer / curved section ---------- */}
-        <div className="relative px-5 pb-8 pt-[2px] sm:px-[3vw] sm:pb-9 lg:pt-[1px]">
+        <div
+          data-d="footer"
+          className="relative px-5 pb-8 pt-[2px] sm:px-[3vw] sm:pb-9 lg:pt-[1px]"
+        >
           {/*
             Tilted tan slab — z-10, painted AFTER the trail layer above, so it
             occludes any stamps spawned in this region. Its own content
             (logo, nav, socials, contact) goes on top at z-20/relative so the
             trail never shows through inside the curved area.
           */}
-          <div className="absolute -bottom-[400px] left-[2.2%] right-[2.2%] -top-[10px] z-10 origin-bottom-left -skew-y-[3deg] rounded-t-[26px] bg-[#E9E2D6] sm:top-[0px] sm:-skew-y-[0deg] sm:rounded-t-[34px] lg:top-[120px] lg:-skew-y-[10deg]" />
+          <div
+            data-d="slab"
+            className="absolute -bottom-[400px] left-[2.2%] right-[2.2%] -top-[10px] z-10 origin-bottom-left -skew-y-[3deg] rounded-t-[26px] bg-[#E9E2D6] sm:top-[0px] sm:-skew-y-[0deg] sm:rounded-t-[34px] lg:top-[120px] lg:-skew-y-[10deg]"
+          />
 
           <div className="relative z-20 grid max-w-[1600px] items-end gap-8 sm:gap-10 md:grid-cols-2 lg:grid-cols-[1fr_minmax(0,400px)_220px]">
             {/* logo */}
@@ -519,14 +710,14 @@ export default function FooterWithCta({
             {/* nav + socials + credits */}
             <div className="order-2 flex flex-col gap-5 sm:gap-6 md:order-2 lg:order-none">
               <nav aria-label="Footer" className="xl:flex flex-wrap gap-2 sm:gap-2.5 hidden">
-                 <nav aria-label="Footer" className="flex flex-wrap gap-2 sm:gap-2.5">
+                 <nav data-d="nav" aria-label="Footer" className="flex flex-wrap gap-2 sm:gap-2.5">
                               {NAV.map((n) => (
                                <NavLink key={n.label} label={n.label} to={n.to} />
                               ))}
                             </nav>
               </nav>
 
-              <div className="flex flex-wrap items-center gap-2">
+              <div data-d="social" className="flex flex-wrap items-center gap-2">
                 <strong className="mr-2 text-base font-semibold tracking-tight sm:text-[1.15rem]">
                   Follow us
                 </strong>
@@ -550,7 +741,11 @@ export default function FooterWithCta({
             </div>
 
             {/* contact */}
-            <div id="contact" className="relative order-1 md:order-3 lg:order-none  md:col-span-2 lg:col-span-1">
+            <div
+              id="contact"
+              data-d="contact"
+              className="relative order-1 md:order-3 lg:order-none  md:col-span-2 lg:col-span-1"
+            >
               <h3 className="mb-2 text-lg font-semibold tracking-tight sm:text-xl">Contact</h3>
               <p className="mb-5 text-sm leading-normal sm:mb-6 sm:text-[0.98rem]">
                 <a href="mailto:info@gethyped.nl">fitmomfamily@gmail.com</a>

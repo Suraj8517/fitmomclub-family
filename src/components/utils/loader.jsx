@@ -162,11 +162,11 @@ export default function Loader({ onDone }) {
 
             {/* small FMC above the first F */}
             <text
-              x="4"
+              x="14"
               y="68"
-              fontSize="16"
+              fontSize="14"
               letterSpacing="2"
-              className="fm-tag font-inter font-bold"
+              className="fm-tag font-space font-bold"
               fill="#161616"
             >
               FITMOM CLUB
