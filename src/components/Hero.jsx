@@ -272,7 +272,7 @@ export default function HeroSection() {
           {/* Phones: one "Get …" per line. sm and up: original two-line break. */}
           <h1
             data-hero="title"
-            className="text-[14vw] font-semibold leading-[0.95] tracking-tight sm:text-[8vw] lg:text-[7vw]"
+            className="text-[14vw] font-semibold leading-[0.95] tracking-tight sm:text-[8vw] lg:text-[7vw] font-poppins"
           >
             <span className="block sm:inline">Get Fit Together.</span>{" "}
             <span className="block sm:inline">

@@ -78,9 +78,9 @@ function HypeBadge({ logo, color }) {
       className="flex h-full w-full items-center justify-center rounded-2xl border-[5px] bg-white px-1 py-1 shadow-[0_10px_20px_rgba(0,0,0,0.12)]"
       style={{ borderColor: color }}
     >
-      <div className="flex items-center gap-1 rounded-xl bg-[#141414] px-3 py-1.5 whitespace-nowrap">
+      <div className="flex items-center gap-1 rounded-xl bg-[#141414] px-2 py-1.5 whitespace-nowrap ">
         <span className="text-base font-black italic leading-none tracking-tight" style={{ color }}>
-          FMC
+          FitMom Club
         </span>
         <span className="text-base font-black italic leading-none tracking-tight text-white">
           FAMILY
@@ -209,7 +209,7 @@ function BrandLogo({ src, alt = "Logo", to, href = "#" }) {
       <Wrapper
         {...wrapperProps}
         aria-label={alt}
-        className="-mb-6 inline-flex h-16 w-40 items-end justify-start sm:h-20 sm:w-48 md:-mb-18 md:h-24 md:w-56 lg:h-68 lg:w-104 -rotate-1"
+        className="-mb-6 inline-flex h-16 w-40 items-end justify-start sm:h-20 sm:w-48 md:-mb-18 md:h-24 md:w-56 lg:h-68 lg:w-104 -rotate-1 mt-4"
       >
         <img
           data-d="logo"
@@ -229,7 +229,7 @@ function BrandLogo({ src, alt = "Logo", to, href = "#" }) {
       className="-mb-6 inline-flex overflow-hidden rounded-t-2xl border-[5px] border-black bg-[#f4efe6] font-['Anton',Impact,sans-serif] text-[clamp(3.4rem,9vw,7.6rem)] uppercase leading-[0.9] tracking-tight sm:-mb-8 sm:rounded-t-3xl sm:border-[6px] md:-mb-9 lg:border-[7px]"
     >
       <b className="flex items-center bg-black pl-[0.14em] pr-[0.1em] pt-[0.06em] font-normal not-italic text-white">
-       FMC
+       FitMom CLub
       </b>
       <em
         className="flex items-center bg-white pl-[0.06em] pr-[0.16em] pt-[0.06em] not-italic text-transparent [-webkit-text-stroke:2.5px_#000] sm:[-webkit-text-stroke:3px_#000]"

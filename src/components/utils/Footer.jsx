@@ -48,7 +48,7 @@ function BrandLogo({ src, alt = "Logo", to, href = "#" }) {
       <Wrapper
         {...wrapperProps}
         aria-label={alt}
-        className="-mb-6 inline-flex h-16 w-40 items-start justify-start sm:h-20 sm:w-48 md:-mb-18 md:h-24 md:w-56 lg:h-68 lg:w-104 -rotate-1"
+        className="-mb-6 inline-flex h-16 w-40 items-start justify-start sm:h-20 sm:w-48 md:-mb-18 md:h-24 md:w-56 lg:h-68 lg:w-104 -rotate-1 mt-4"
       >
         <img
           src={src}
@@ -111,7 +111,7 @@ export default function Footer({
             <Link
               key={n.label}
               to={n.to}
-              className="rounded-[10px] bg-white px-4 py-2.5 text-sm font-semibold tracking-tight focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#FF5A1F] sm:px-5 sm:py-3 sm:text-base"
+              className="rounded-[10px] bg-white px-4 py-2.5 text-sm font-semibold tracking-tight focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#FF5A1F] sm:px-5 sm:py-3 sm:text-base"
             >
               {n.label}
             </Link>
