@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import fmclogo from "../../assets/home/fmc.png"
 import NavLink from "./navButtons";
-
+import logo from "../../assets/logo.png"
 gsap.registerPlugin(ScrollTrigger);
 
 const NAV = [
@@ -621,8 +621,8 @@ export default function FooterWithCta({
               <textPath href={`#badge-circle-${styleId}`}>{badgeTagline}</textPath>
             </text>
           </svg>
-          <span className="relative rotate-14 rounded-full bg-[#141414] px-2.5 py-1.5 text-base font-black text-white sm:px-3.5 sm:text-xl md:text-2xl">
-            {badgeInitials}
+          <span className="relative rotate-14 rounded-full   text-base font-black text-white sm:text-xl md:text-2xl">
+            <img src={logo} className="w-26"/>
           </span>
         </a>
 
