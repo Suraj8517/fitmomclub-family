@@ -132,9 +132,7 @@ export default function Footer({
           <a href="mailto:fitmomfamily@gmail.com" className="hover:underline">
             fitmomfamily@gmail.com
           </a>
-          <a href="tel:+918870444144" className="hover:underline">
-            +91 8870444144
-          </a>
+         
         </div>
 
       

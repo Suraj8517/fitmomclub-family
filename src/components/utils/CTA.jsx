@@ -577,9 +577,7 @@ export default function FooterWithCta({
           <a href="mailto:fitmomfamily@gmail.com" className="hover:underline">
             fitmomfamily@gmail.com
           </a>
-          <a href="tel:+918870444144" className="hover:underline">
-            +91 8870444144
-          </a>
+        
         </div>
 
 
@@ -739,7 +737,6 @@ export default function FooterWithCta({
               <p className="mb-5 text-sm leading-normal sm:mb-6 sm:text-[0.98rem]">
                 <a href="mailto:info@gethyped.nl">fitmomfamily@gmail.com</a>
                 <br />
-                <a href="tel:+31631328354">+91 8870444144</a>
               </p>
              
             </div>
