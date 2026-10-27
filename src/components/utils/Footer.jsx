@@ -95,7 +95,8 @@ export default function Footer({
       {/* Big logo, nav pills, socials, contact/address, legal footer.  */}
       {/* ============================================================ */}
       <div className="relative z-20 flex flex-col items-center gap-4 px-5 py-2 text-center xl:hidden sm:gap-7 sm:px-8 sm:py-11 md:mx-auto md:max-w-2xl md:gap-8 md:px-10 md:py-14">
-        
+        {/* Logo */}
+
 
         {/* Nav pills */}
         <nav aria-label="Footer" className="flex flex-wrap justify-center gap-2 sm:gap-2.5">

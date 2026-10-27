@@ -147,7 +147,7 @@ export default function Loader({ onDone }) {
                     />
                   </path>
                 </g>
-                <path d={wave} fill="#161616">
+                <path d={wave} fill="#009689">
                   <animateTransform
                     attributeName="transform"
                     type="translate"
@@ -162,10 +162,10 @@ export default function Loader({ onDone }) {
 
             {/* small FMC above the first F */}
             <text
-              x="14"
-              y="68"
-              fontSize="14"
-              letterSpacing="2"
+              x="320"
+              y="60"
+              fontSize="30"
+              letterSpacing="8"
               className="fm-tag font-space font-bold"
               fill="#161616"
             >

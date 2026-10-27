@@ -11,6 +11,7 @@ import ScrollToTop from '../components/utils/scrollToTop';
 import BlogList from './blogList';
 import BlogPost from './blogPost';
 import Loader from '../components/utils/loader';
+import logo from "../assets/logo.png"
 
 function LandingPage() {
   const location = useLocation();
@@ -22,7 +23,7 @@ function LandingPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader logoSrc={logo}/>;
 
   return (
     <div>
