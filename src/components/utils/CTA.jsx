@@ -75,11 +75,11 @@ function HypeBadge({ logo, color }) {
   }
   return (
     <div
-      className="flex h-full w-full items-center justify-center rounded-2xl border-[5px] bg-white px-1 py-1 shadow-[0_10px_20px_rgba(0,0,0,0.12)]"
+      className="flex h-full w-full items-center justify-center rounded-full border-[2px] bg-white px-1 py-1 shadow-[0_10px_20px_rgba(0,0,0,0.12)]"
       style={{ borderColor: color }}
     >
-      <div className="flex items-center gap-1 rounded-xl bg-[#141414] px-2 py-1.5 whitespace-nowrap ">
-        <span className="text-base font-black italic leading-none tracking-tight" style={{ color }}>
+      <div className="flex items-center gap-1 rounded-xl bg-[#141414] px-1.5 py-1.5 whitespace-nowrap  ">
+        <span className=" uppercase text-base font-black italic leading-none tracking-tight" style={{ color }}>
           FitMom Club
         </span>
         <span className="text-base font-black italic leading-none tracking-tight text-white">
@@ -229,7 +229,7 @@ function BrandLogo({ src, alt = "Logo", to, href = "#" }) {
       className="-mb-6 inline-flex overflow-hidden rounded-t-2xl border-[5px] border-black bg-[#f4efe6] font-['Anton',Impact,sans-serif] text-[clamp(3.4rem,9vw,7.6rem)] uppercase leading-[0.9] tracking-tight sm:-mb-8 sm:rounded-t-3xl sm:border-[6px] md:-mb-9 lg:border-[7px]"
     >
       <b className="flex items-center bg-black pl-[0.14em] pr-[0.1em] pt-[0.06em] font-normal not-italic text-white">
-       FitMom CLub
+       FitMom Club
       </b>
       <em
         className="flex items-center bg-white pl-[0.06em] pr-[0.16em] pt-[0.06em] not-italic text-transparent [-webkit-text-stroke:2.5px_#000] sm:[-webkit-text-stroke:3px_#000]"
@@ -259,7 +259,7 @@ export default function FooterWithCta({
     { label: "Algemene voorwaarden", href: "#" },
     { label: "Privacyverklaring", href: "#" },
   ],
-  credit = "© Design by Dylan",
+  credit = "© all rights reserved. FitMom Club Family",
 }) {
   const rootRef = useRef(null);
   // useId() returns something like ":r4:" — valid for a DOM id attribute,
@@ -496,7 +496,7 @@ export default function FooterWithCta({
         {stamps.map((stamp) => (
           <div
             key={stamp.id}
-            className="absolute h-14 w-36 sm:h-16 sm:w-40 md:h-20 md:w-48"
+            className="absolute h-14 w-36 sm:h-16 sm:w-40 md:h-10 md:w-52"
             style={{
               left: stamp.x,
               top: stamp.y,
@@ -522,18 +522,7 @@ export default function FooterWithCta({
         data-m="wrap"
         className="relative z-20 flex flex-col items-center gap-6 px-5 pb-10 pt-9 text-center xl:hidden sm:gap-7 sm:px-8 sm:pb-12 sm:pt-11 md:mx-auto md:max-w-2xl md:gap-8 md:px-10 md:pb-14 md:pt-14"
       >
-        {/* Logo */}
-        <div
-          data-m="logo"
-          className="w-full max-w-[380px] sm:max-w-[460px] md:max-w-[520px]"
-        >
-          <img
-            src={logoSrc}
-            alt={logoAlt}
-            className="h-auto w-full object-contain drop-shadow-[0_12px_22px_rgba(0,0,0,0.15)]"
-            draggable={false}
-          />
-        </div>
+       
 
         {/* CTA button */}
         <Link

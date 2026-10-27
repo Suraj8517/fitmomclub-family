@@ -83,18 +83,18 @@ export default function Header() {
       {/* Mobile menu: full-screen pink panel, links as white pills in the centre,
           CTA pinned to the bottom. Sits behind the logo + toggle row (z-10 below). */}
       <div
-        id="mobile-menu"
-        className={`lg:hidden absolute left-0 top-0 z-0 flex h-dvh w-full flex-col items-center rounded-b-2xl bg-primary-pink px-4 pt-24 pb-[max(1.5rem,env(safe-area-inset-bottom))] transition-opacity duration-300 ${
-          open ? "visible opacity-100" : "pointer-events-none invisible opacity-0"
-        }`}
-      >
+  id="mobile-menu"
+  className={`lg:hidden absolute left-0 top-0 z-0 flex h-dvh w-full flex-col items-center rounded-b-2xl bg-black/70 px-4 pt-24 pb-[max(1.5rem,env(safe-area-inset-bottom))] transition-opacity duration-300 ${
+    open ? "visible opacity-100" : "pointer-events-none invisible opacity-0"
+  }`}
+>
         <nav className="flex flex-1 flex-col items-center justify-center gap-2">
           {NAV_LINKS.map(({ label, to }) => (
             <Link
               key={to}
               to={to}
               onClick={closeMenu}
-              className="rounded-2xl bg-primary-white px-6 py-3 text-xl font-semibold text-text transition-transform duration-200 active:scale-95"
+              className="rounded-2xl bg-primary-blue px-6 py-3 text-xl font-semibold text-white transition-transform duration-200 active:scale-95"
             >
               {label}
             </Link>
@@ -104,7 +104,7 @@ export default function Header() {
         <Link
           to="/contact-us"
           onClick={closeMenu}
-          className="inline-flex items-center gap-3 rounded-xl bg-text py-1 pl-4 pr-1 text-sm font-semibold text-primary-white transition-transform duration-200 active:scale-95"
+          className="inline-flex items-center gap-3 rounded-xl bg-primary-green py-1 pl-4 pr-1 text-sm font-semibold text-primary-white transition-transform duration-200 active:scale-95"
         >
           Join Now
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-white">

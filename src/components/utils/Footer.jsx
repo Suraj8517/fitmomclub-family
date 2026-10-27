@@ -95,15 +95,7 @@ export default function Footer({
       {/* Big logo, nav pills, socials, contact/address, legal footer.  */}
       {/* ============================================================ */}
       <div className="relative z-20 flex flex-col items-center gap-4 px-5 py-2 text-center xl:hidden sm:gap-7 sm:px-8 sm:py-11 md:mx-auto md:max-w-2xl md:gap-8 md:px-10 md:py-14">
-        {/* Logo */}
-        <div className="w-full max-w-[380px] sm:max-w-[460px] md:max-w-[520px]">
-          <img
-            src={logoSrc}
-            alt={logoAlt}
-            className="h-auto w-full object-contain drop-shadow-[0_12px_22px_rgba(0,0,0,0.15)]"
-            draggable={false}
-          />
-        </div>
+        
 
         {/* Nav pills */}
         <nav aria-label="Footer" className="flex flex-wrap justify-center gap-2 sm:gap-2.5">
@@ -158,7 +150,7 @@ export default function Footer({
 
         <div className="relative z-20 grid max-w-[1600px] items-end gap-8 sm:gap-10 md:grid-cols-2 lg:grid-cols-[1fr_minmax(0,400px)_220px]">
           {/* logo */}
-          <div className="order-3 md:order-1 lg:order-none flex items-start self-end justify-start">
+          <div className="order-3 md:order-1 lg:order-none flex items-start self-end justify-start ">
             <BrandLogo
               src={logoSrc}
               alt={logoAlt}
@@ -204,7 +196,6 @@ export default function Footer({
             <p className="mb-5 text-sm leading-normal sm:mb-6 sm:text-[0.98rem]">
               <a href="mailto:fitmomfamily@gmail.com">fitmomfamily@gmail.com</a>
               <br />
-              <a href="tel:+918870444144">+91 8870444144</a>
             </p>
            
           </div>
