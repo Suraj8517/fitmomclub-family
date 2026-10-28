@@ -19,7 +19,7 @@ const NAV = [
 const SOCIALS = [
   {
     label: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/fitmom.family/",
     icon: (
       <g fill="none" stroke="currentColor" strokeWidth="2">
         <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
@@ -36,7 +36,7 @@ const SOCIALS = [
   },
   {
     label: "Facebook",
-    href: "#",
+    href: "https://www.facebook.com/Fitmomclub.family",
     icon: (
       <path
         fill="currentColor"

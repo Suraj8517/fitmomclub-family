@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const DEFAULT_PROGRAMS = [
   {
     title: "Family Home Workouts",
@@ -161,11 +163,11 @@ function ProgramCard({ program }) {
           >
             {program.description}
           </p>
-          <span
+          <Link to="/contact-us"
             className={`flex h-11 w-11 shrink-0 items-center justify-center self-end rounded-full transition-transform duration-300 group-hover:rotate-45 sm:h-12 sm:w-12 sm:self-auto ${t.btn}`}
           >
             <ArrowIcon />
-          </span>
+          </Link>
         </div>
       </div>
     </a>
